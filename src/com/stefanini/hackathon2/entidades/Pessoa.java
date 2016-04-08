@@ -35,6 +35,14 @@ public class Pessoa {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
 
 	@Override
 	public final int hashCode() {
