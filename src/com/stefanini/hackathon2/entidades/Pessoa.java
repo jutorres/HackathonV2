@@ -17,7 +17,6 @@ public class Pessoa {
 	@Column(nullable=false)
 	private String cpf;
 	
-	
 	public Pessoa() {
 	}
 
@@ -73,5 +72,4 @@ public class Pessoa {
 			return false;
 		return true;
 	}
-
 }
