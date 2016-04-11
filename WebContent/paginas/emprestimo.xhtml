@@ -46,22 +46,19 @@
 						<p:commandButton value="Limpar" process="@this" update="@form" action="#{emprestimosManagedBean.limpar()}" icon="fa fa-fw fa-eraser" />
 					</h:form>
 					
-					<p:dataTable id="tabelaDeEmprestimos" var="emprestimo" value="#{emprestimoManagedBean.listaDeEmprestimosCadastrados}"
+					<p:dataTable id="tabelaDeEmprestimos" var="emprestimos" value="#{emprestimosManagedBean.listaDeEmprestimosCadastrados}"
 						emptyMessage="Não existem empréstimos cadastradas" style="padding-top:20px;">
 						<p:column headerText="Id">
-				    	    <h:outputText value="#{emprestimo.id}" />
+				    	    <h:outputText value="#{emprestimos.idEmprestimo}" />
 					    </p:column>
 					    <p:column headerText="Nome">
-				    	    <h:outputText value="#{emprestimo.nome}" />
-					    </p:column>
-					    <p:column headerText="Titulo">
-				    	    <h:outputText value="#{emprestimo.titulo}" />
+				    	    <h:outputText value="#{emprestimos.pessoa.nome}" />
 					    </p:column>
 					    <p:column headerText="DataRetirada">
-				    	    <h:outputText value="#{emprestimo.dataRetirada}" />
+				    	    <h:outputText value="#{emprestimos.dataRetirada}" />
 					    </p:column>
 					    <p:column headerText="DataDevolucao">
-				    	    <h:outputText value="#{emprestimo.dataDevolucao}" />
+				    	    <h:outputText value="#{emprestimos.dataDevolucao}" />
 					    </p:column>
 					    <p:column headerText="Ações" style="text-align: center">
 					    	<p:commandButton icon="fa fa-fw fa-edit" title="Editar Emprestimo" update="emprestimoForm" action="#{emprestimoManagedBean.setEmprestimo(emprestimo)}" />

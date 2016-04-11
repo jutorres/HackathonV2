@@ -19,10 +19,10 @@ public class Emprestimos {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idEmprestimo;
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne(cascade = CascadeType.REFRESH)
 	@JoinColumn(name = "idLivro")
 	private Livro livro;
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne(cascade = CascadeType.REFRESH)
 	@JoinColumn(name = "idPessoa")
 	private Pessoa pessoa;
 	@Convert(converter = LocalDateTimeConverter.class)
