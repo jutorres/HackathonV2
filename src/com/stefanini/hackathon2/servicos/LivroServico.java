@@ -29,7 +29,7 @@ public class LivroServico {
 
 	@Transacional
 	public void deletar(Livro livro) {
-		repositorio.remover(livro);;
+		repositorio.remover(livro);
 	}
 	
 }

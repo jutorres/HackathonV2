@@ -11,7 +11,7 @@ public class Livro {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
+	private Integer idLivro;
 	@Column(nullable=false)
 	private String nome;
 	@Column(nullable=false)
@@ -23,11 +23,11 @@ public class Livro {
 	}
 
 	public Integer getId() {
-		return id;
+		return idLivro;
 	}
 
 	public void setId(Integer id) {
-		this.id = id;
+		this.idLivro = id;
 	}
 
 	public String getNome() {
@@ -59,7 +59,7 @@ public class Livro {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((autor == null) ? 0 : autor.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((idLivro == null) ? 0 : idLivro.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((paginas == null) ? 0 : paginas.hashCode());
 		return result;
@@ -79,10 +79,10 @@ public class Livro {
 				return false;
 		} else if (!autor.equals(other.autor))
 			return false;
-		if (id == null) {
-			if (other.id != null)
+		if (idLivro == null) {
+			if (other.idLivro != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!idLivro.equals(other.idLivro))
 			return false;
 		if (nome == null) {
 			if (other.nome != null)

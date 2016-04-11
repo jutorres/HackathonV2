@@ -11,7 +11,7 @@ public class Pessoa {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
+	private Integer idPessoa;
 	@Column(nullable=false)
 	private String nome;
 	@Column(nullable=false)
@@ -21,11 +21,11 @@ public class Pessoa {
 	}
 
 	public Integer getId() {
-		return id;
+		return idPessoa;
 	}
 
 	public void setId(Integer id) {
-		this.id = id;
+		this.idPessoa = id;
 	}
 
 	public String getNome() {
@@ -48,7 +48,7 @@ public class Pessoa {
 	public final int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((idPessoa == null) ? 0 : idPessoa.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
 		return result;
@@ -63,10 +63,10 @@ public class Pessoa {
 		if (getClass() != obj.getClass())
 			return false;
 		Pessoa other = (Pessoa) obj;
-		if (id == null) {
-			if (other.id != null)
+		if (idPessoa == null) {
+			if (other.idPessoa != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!idPessoa.equals(other.idPessoa))
 			return false;
 		if (nome == null) {
 			if (other.nome != null)
