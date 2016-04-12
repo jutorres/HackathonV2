@@ -48,22 +48,31 @@
 					
 					<p:dataTable id="tabelaDeEmprestimos" var="emprestimos" value="#{emprestimosManagedBean.listaDeEmprestimosCadastrados}"
 						emptyMessage="Não existem empréstimos cadastradas" style="padding-top:20px;">
+						
 						<p:column headerText="Id">
 				    	    <h:outputText value="#{emprestimos.idEmprestimo}" />
 					    </p:column>
+					    
 					    <p:column headerText="Nome">
 				    	    <h:outputText value="#{emprestimos.pessoa.nome}" />
 					    </p:column>
+					    
 					    <p:column headerText="DataRetirada">
-				    	    <h:outputText value="#{emprestimos.dataRetirada}" />
+				    	    <h:outputText converter="printConverter" value="#{emprestimos.dataRetirada}" />
 					    </p:column>
-					    <p:column headerText="DataDevolucao">
-				    	    <h:outputText value="#{emprestimos.dataDevolucao}" />
-					    </p:column>
+					    
+					    <p:column headerText="Devolução">
+					    	 <h:outputText converter="printConverter" value="#{emprestimos.dataDevolucao}" />
+						</p:column>
+						    
+						 <p:column headerText="Dias em Atraso">
+					    	  <h:outputText value="#{emprestimosManagedBean.getDiasEmAtraso(emprestimos.dataRetirada, emprestimos.dataDevolucao)}" />
+						 </p:column>
+						 
 					    <p:column headerText="Ações" style="text-align: center">
-					    	<p:commandButton icon="fa fa-fw fa-edit" title="Editar Emprestimo" update="emprestimoForm" action="#{emprestimoManagedBean.setEmprestimo(emprestimo)}" />
-					    	<p:commandButton icon="fa fa-fw fa-trash" title="Deletar Emprestimo" update="tabelaDeEmprestimos emprestimoForm" action="#{emprestimoManagedBean.deletar(emprestimo)}">
-					    		<p:confirm header="Confirmação" message="Deseja excluir este empréstimo?" icon="ui-icon-alert" />
+					    	<p:commandButton icon="fa fa-fw fa-edit" title="Editar Emprestimo" update="emprestimoForm" action="#{emprestimosManagedBean.setEmprestimo(emprestimos)}" />
+					    	<p:commandButton icon="fa fa-fw fa-book" title="Confirma devolução" update="tabelaDeEmprestimos emprestimoForm" action="#{emprestimosManagedBean.finalizarEmprestimo(emprestimos)}">
+					    		<p:confirm header="Confirmação" message="Confirma a devolução do livro?" icon="ui-icon-alert" />
 					    	</p:commandButton>
 					    	
 					    	<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">

@@ -1,6 +1,7 @@
 package com.stefanini.hackathon2.entidades;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -32,6 +33,9 @@ public class Emprestimos {
 	private LocalDateTime dataDevolucao;
 
 	public Emprestimos() {
+		this.dataRetirada = LocalDateTime.now();
+		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm.s");
+		this.dataRetirada.format(formatador);
 	}
 
 	public Integer getIdEmprestimo() {

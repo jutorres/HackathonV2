@@ -1,5 +1,6 @@
 package com.stefanini.hackathon2.managed.beans;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -66,4 +67,24 @@ public class EmprestimosManagedBean {
 	public void setEmprestimo(Emprestimos emprestimo) {
 		this.emprestimo = emprestimo;
 	}
+	
+	public void finalizarEmprestimo(Emprestimos emprestimo) {
+		emprestimo.setDataDevolucao(LocalDateTime.now());
+		servico.salvar(emprestimo);
+	}
+	
+	public String getDiasEmAtraso(String dataRetiradaString, String dataEntregaString) {
+		LocalDateTime localDateTimeRetirada;
+		LocalDateTime localDateTimeEntrega = null;
+		if(dataEntregaString.length() == 16) {
+			localDateTimeEntrega = LocalDateTime.parse(dataEntregaString);
+		}		
+		try {
+			localDateTimeRetirada = LocalDateTime.parse(dataRetiradaString);
+			return String.valueOf(servico.calcIntervaloDias(localDateTimeRetirada, localDateTimeEntrega));
+		} catch (Exception e) {
+			return "0";
+		}
+	}
+	
 }
