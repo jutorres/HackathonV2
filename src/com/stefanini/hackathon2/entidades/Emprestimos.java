@@ -34,8 +34,6 @@ public class Emprestimos {
 
 	public Emprestimos() {
 		this.dataRetirada = LocalDateTime.now();
-		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm.s");
-		this.dataRetirada.format(formatador);
 	}
 
 	public Integer getIdEmprestimo() {

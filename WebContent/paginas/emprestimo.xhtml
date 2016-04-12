@@ -11,7 +11,7 @@
 		
 		<p:layout>
 				<p:layoutUnit position="north" style="text-align: center;">
-					<p:outputLabel style="font-size: 30px;" value="Emprestimos"/>
+					<p:outputLabel style="font-size: 30px;" value="Central de Empréstimos"/>
 				</p:layoutUnit>
 
 				<p:layoutUnit position="center">
@@ -19,10 +19,10 @@
 					<h:form id="emprestimoForm">				
 						<p:growl id="growl" showDetail="true" sticky="false" life="4000" />
 
-					<p:panelGrid columns="5">
+					<p:panelGrid columns="2">
 
 						<p:outputLabel for="idLivro" value="Selecione o livro: " />
-						<p:selectOneMenu id="idLivro" converter="conversorCombobox"
+						<p:selectOneMenu id="idLivro" converter="conversorCombobox" requiredMessage="Campo obrigatório" required="true"
 							value="#{emprestimosManagedBean.emprestimo.livro}" effect="fold">
 
 							<f:selectItem itemLabel="Selecione um livro" itemValue="" />
@@ -32,7 +32,7 @@
 						</p:selectOneMenu>
 						
 						<p:outputLabel for="idPessoa" value="Selecione o nome da pessoa: " />
-						<p:selectOneMenu id="idPessoa" converter="conversorCombobox"
+						<p:selectOneMenu id="idPessoa" converter="conversorCombobox" requiredMessage="Campo obrigatório" required="true"
 								value="#{emprestimosManagedBean.emprestimo.pessoa}" effect="fold">
 							<f:selectItem itemLabel="Selecione um pessoa" itemValue="" />
 							<f:selectItems value="#{pessoaManagedBean.listaDePessoasCadastradas}" var="pessoa"  
@@ -45,32 +45,37 @@
 						<p:commandButton value="Salvar" process="@form" update="@form tabelaDeEmprestimos" action="#{emprestimosManagedBean.salvar()}" icon="fa fa-fw fa-save" />
 						<p:commandButton value="Limpar" process="@this" update="@form" action="#{emprestimosManagedBean.limpar()}" icon="fa fa-fw fa-eraser" />
 					</h:form>
-					
-					<p:dataTable id="tabelaDeEmprestimos" var="emprestimos" value="#{emprestimosManagedBean.listaDeEmprestimosCadastrados}"
+
+				
+
+				<p:dataTable id="tabelaDeEmprestimos" var="emprestimos" value="#{emprestimosManagedBean.listaDeEmprestimosCadastrados}"
 						emptyMessage="Não existem empréstimos cadastradas" style="padding-top:20px;">
 						
-						<p:column headerText="Id">
+						<p:column headerText="Id" style="text-align: center">
 				    	    <h:outputText value="#{emprestimos.idEmprestimo}" />
 					    </p:column>
 					    
-					    <p:column headerText="Nome">
+					    <p:column headerText="Nome" style="text-align: center">
 				    	    <h:outputText value="#{emprestimos.pessoa.nome}" />
 					    </p:column>
 					    
-					    <p:column headerText="DataRetirada">
+					    <p:column headerText="Título do livro" style="text-align: center">
+				    	    <h:outputText value="#{emprestimos.livro.nome}" />
+					    </p:column>
+					    
+					    <p:column headerText="DataRetirada" style="text-align: center">
 				    	    <h:outputText converter="printConverter" value="#{emprestimos.dataRetirada}" />
 					    </p:column>
 					    
-					    <p:column headerText="Devolução">
+					    <p:column headerText="Devolução" style="text-align: center">
 					    	 <h:outputText converter="printConverter" value="#{emprestimos.dataDevolucao}" />
 						</p:column>
 						    
-						 <p:column headerText="Dias em Atraso">
+						 <p:column headerText="Dias em Atraso" style="text-align: center">
 					    	  <h:outputText value="#{emprestimosManagedBean.getDiasEmAtraso(emprestimos.dataRetirada, emprestimos.dataDevolucao)}" />
 						 </p:column>
 						 
 					    <p:column headerText="Ações" style="text-align: center">
-					    	<p:commandButton icon="fa fa-fw fa-edit" title="Editar Emprestimo" update="emprestimoForm" action="#{emprestimosManagedBean.setEmprestimo(emprestimos)}" />
 					    	<p:commandButton icon="fa fa-fw fa-book" title="Confirma devolução" update="tabelaDeEmprestimos emprestimoForm" action="#{emprestimosManagedBean.finalizarEmprestimo(emprestimos)}">
 					    		<p:confirm header="Confirmação" message="Confirma a devolução do livro?" icon="ui-icon-alert" />
 					    	</p:commandButton>

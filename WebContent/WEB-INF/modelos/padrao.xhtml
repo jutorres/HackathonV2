@@ -20,8 +20,10 @@
 			    <h:form>
 				    <p:menubar>
 				        <p:menuitem value="Principal" url="/paginas/principal.xhtml" icon="fa fa-fw fa-home" />
-				 
-				        <p:submenu label="Cadastros" icon="fa fa-fw fa-edit">
+				        
+
+
+					<p:submenu label="Cadastros" icon="fa fa-fw fa-edit">
 			                <p:menuitem value="Livros" icon="fa fa-fw fa-book" url="/paginas/livro.xhtml" />
 				            <p:separator />
 			                <p:menuitem value="Pessoas" icon="fa fa-fw fa-users" url="/paginas/pessoa.xhtml" />
@@ -33,6 +35,7 @@
 				 
 				        <f:facet name="options">
 				            <p:inputText style="margin-right:10px" placeholder="buscar"/>
+				            
 				            <p:commandButton type="button" value="Sair da aplicação" icon="fa fa-fw fa-power-off" />
 				        </f:facet>
 				    </p:menubar>
@@ -50,10 +53,21 @@
 		    <p:layoutUnit position="south" resizable="true" size="40" minSize="40" maxSize="40"
 		    	style="border: 0px solid white;">
 		        <p:outputLabel style="font-size: 12px; float: right;" 
-		        	value="Copyright 2014. Todos os Direitos reservados a Stefanini Hackathon2."/>
+		        	value="Copyright 2016. Todos os Direitos reservados a Juliana Torres."/>
 		    </p:layoutUnit>
-		    
-		</p:layout>
+
+		<h:form>
+			<p:growl id="messages" showDetail="true" sticky="true" />
+
+			<p:idleMonitor timeout="5000">
+				<p:ajax event="idle" listener="#{idleMonitorView.onIdle}"
+					update="messages" />
+				<p:ajax event="active" listener="#{idleMonitorView.onActive}"
+					update="messages" />
+			</p:idleMonitor>
+		</h:form>
+
+	</p:layout>
 		
 	</h:body>
 </html>

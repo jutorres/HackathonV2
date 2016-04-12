@@ -1,5 +1,6 @@
 package com.stefanini.hackathon2.entidades;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 import javax.faces.convert.FacesConverter;
@@ -8,18 +9,18 @@ import javax.persistence.Converter;
 
 @Converter(autoApply=true)
 @FacesConverter("dateConverter")
-public class LocalDateTimeConverter implements AttributeConverter<LocalDateTime, java.sql.Timestamp> {
+public class LocalDateTimeConverter implements AttributeConverter<LocalDateTime, Timestamp> {
 
   @Override
-  	public java.sql.Timestamp convertToDatabaseColumn(LocalDateTime entityValue) {
+  	public Timestamp convertToDatabaseColumn(LocalDateTime entityValue) {
 	    if (entityValue != null) {
-	      return java.sql.Timestamp.valueOf(entityValue);
+	      return Timestamp.valueOf(entityValue);
 	    }
 	    return null;
 	}
 
   @Override
-  	public LocalDateTime convertToEntityAttribute(java.sql.Timestamp databaseValue) {
+  	public LocalDateTime convertToEntityAttribute(Timestamp databaseValue) {
 	    if (databaseValue != null) {
 	      return databaseValue.toLocalDateTime();
 	    }
