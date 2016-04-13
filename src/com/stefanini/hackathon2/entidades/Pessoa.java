@@ -16,16 +16,10 @@ public class Pessoa {
 	private String nome;
 	@Column(nullable=false)
 	private String cpf;
+	@Column(nullable=false)
+	private String email;
 	
 	public Pessoa() {
-	}
-
-	public Integer getId() {
-		return idPessoa;
-	}
-
-	public void setId(Integer id) {
-		this.idPessoa = id;
 	}
 
 	public String getNome() {
@@ -44,6 +38,22 @@ public class Pessoa {
 		this.cpf = cpf;
 	}
 
+	public Integer getIdPessoa() {
+		return idPessoa;
+	}
+	
+	public void setIdPessoa(Integer idPessoa) {
+		this.idPessoa = idPessoa;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	@Override
 	public final int hashCode() {
 		final int prime = 31;
@@ -51,6 +61,7 @@ public class Pessoa {
 		result = prime * result + ((idPessoa == null) ? 0 : idPessoa.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		return result;
 	}
 
@@ -77,6 +88,11 @@ public class Pessoa {
 			if (other.cpf != null)
 				return false;
 		} else if (!cpf.equals(other.cpf))
+			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
 			return false;
 		return true;
 	}
