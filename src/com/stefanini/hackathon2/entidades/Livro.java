@@ -22,12 +22,12 @@ public class Livro {
 	public Livro() {
 	}
 
-	public Integer getId() {
+	public Integer getIdLivro() {
 		return idLivro;
 	}
 
-	public void setId(Integer id) {
-		this.idLivro = id;
+	public void setIdLivro(Integer idLivro) {
+		this.idLivro = idLivro;
 	}
 
 	public String getNome() {

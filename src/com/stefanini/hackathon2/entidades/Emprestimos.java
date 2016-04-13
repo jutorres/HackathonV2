@@ -1,13 +1,11 @@
 package com.stefanini.hackathon2.entidades;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,6 +24,9 @@ public class Emprestimos {
 	@ManyToOne(cascade = CascadeType.REFRESH)
 	@JoinColumn(name = "idPessoa")
 	private Pessoa pessoa;
+	@ManyToOne(cascade = CascadeType.REFRESH)
+	@JoinColumn(name = "idFuncionario")
+	private Funcionario funcionario;
 	@Convert(converter = LocalDateTimeConverter.class)
 	private LocalDateTime dataRetirada;
 	@Column
@@ -47,6 +48,10 @@ public class Emprestimos {
 	public Pessoa getPessoa() {
 		return pessoa;
 	}
+	
+	public Funcionario getFuncionario() {
+		return funcionario;
+	}
 
 	public LocalDateTime getDataRetirada() {
 		return dataRetirada;
@@ -67,6 +72,10 @@ public class Emprestimos {
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
 	}
+	
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
+	}
 
 	public void setDataRetirada(LocalDateTime dataRetirada) {
 		this.dataRetirada = dataRetirada;
@@ -82,6 +91,7 @@ public class Emprestimos {
 		int result = 1;
 		result = prime * result + ((livro == null) ? 0 : livro.hashCode());
 		result = prime * result + ((pessoa == null) ? 0 : pessoa.hashCode());
+		result = prime * result + ((funcionario == null) ? 0 : funcionario.hashCode());
 		result = prime * result + ((dataRetirada == null) ? 0 : dataRetirada.hashCode());
 		result = prime * result + ((dataDevolucao == null) ? 0 : dataDevolucao.hashCode());
 		return result;
@@ -121,7 +131,11 @@ public class Emprestimos {
 				return false;
 		} else if (!pessoa.equals(other.pessoa))
 			return false;
+		if (funcionario == null) {
+			if (other.funcionario != null)
+				return false;
+		} else if (!funcionario.equals(other.funcionario))
+			return false;
 		return true;
 	}
-
 }
