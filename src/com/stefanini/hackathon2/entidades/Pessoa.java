@@ -12,10 +12,13 @@ public class Pessoa {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer idPessoa;
+	
 	@Column(nullable=false)
 	private String nome;
+	
 	@Column(nullable=false)
 	private String cpf;
+	
 	@Column(nullable=false)
 	private String email;
 	

@@ -18,17 +18,23 @@ public class Emprestimos {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idEmprestimo;
+	
 	@ManyToOne(cascade = CascadeType.REFRESH)
 	@JoinColumn(name = "idLivro")
 	private Livro livro;
+	
 	@ManyToOne(cascade = CascadeType.REFRESH)
 	@JoinColumn(name = "idPessoa")
 	private Pessoa pessoa;
+	
 	@ManyToOne(cascade = CascadeType.REFRESH)
 	@JoinColumn(name = "idFuncionario")
 	private Funcionario funcionario;
+	
+	@Column
 	@Convert(converter = LocalDateTimeConverter.class)
 	private LocalDateTime dataRetirada;
+	
 	@Column
 	@Convert(converter = LocalDateTimeConverter.class)
 	private LocalDateTime dataDevolucao;

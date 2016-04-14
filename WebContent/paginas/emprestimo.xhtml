@@ -24,9 +24,7 @@
 						<p:outputLabel for="idLivro" value="Selecione o livro: " />
 						<p:selectOneMenu id="idLivro" converter="conversorCombobox" requiredMessage="Campo obrigatório" required="true"
 							value="#{emprestimosManagedBean.emprestimo.livro}" effect="fold">
-
 							<f:selectItem itemLabel="Selecione um livro" itemValue="" />
-
 							<f:selectItems itemLabel="#{livro.nome}" itemValue="#{livro}"
 								var="livro" value="#{livroManagedBean.listaDeLivrosCadastrados}" />
 						</p:selectOneMenu>
@@ -36,8 +34,15 @@
 								value="#{emprestimosManagedBean.emprestimo.pessoa}" effect="fold">
 							<f:selectItem itemLabel="Selecione um pessoa" itemValue="" />
 							<f:selectItems value="#{pessoaManagedBean.listaDePessoasCadastradas}" var="pessoa"  
-							itemLabel="#{pessoa.nome}" itemValue="#{pessoa}"
-								/>
+							itemLabel="#{pessoa.nome}" itemValue="#{pessoa}"/>
+						</p:selectOneMenu>
+						
+						<p:outputLabel for="idFuncionario" value="Selecione o nome do funcionario: " />
+						<p:selectOneMenu id="idFuncionario" converter="conversorCombobox" requiredMessage="Campo obrigatório" required="true"
+								value="#{emprestimosManagedBean.emprestimo.funcionario}" effect="fold">
+							<f:selectItem itemLabel="Selecione um funcionario" itemValue="" />
+							<f:selectItems value="#{funcionarioManagedBean.listaDeFuncionariosCadastrados}" var="funcionario"  
+							itemLabel="#{funcionario.nome}" itemValue="#{funcionario}"/>
 						</p:selectOneMenu>
 						
 					</p:panelGrid>
@@ -61,6 +66,10 @@
 					    
 					    <p:column headerText="Título do livro" style="text-align: center">
 				    	    <h:outputText value="#{emprestimos.livro.nome}" />
+					    </p:column>
+					    
+					    <p:column headerText="Funcionario" style="text-align: center">
+				    	    <h:outputText value="#{emprestimos.funcionario.nome}" />
 					    </p:column>
 					    
 					    <p:column headerText="DataRetirada" style="text-align: center">

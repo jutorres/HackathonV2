@@ -13,6 +13,8 @@
 		<class>com.stefanini.hackathon2.entidades.Pessoa</class>
 		
 		<class>com.stefanini.hackathon2.entidades.Emprestimos</class>
+		
+		<class>com.stefanini.hackathon2.entidades.Funcionario</class>
 
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />

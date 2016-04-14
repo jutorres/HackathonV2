@@ -25,8 +25,8 @@ public class PessoaRepositorio {
 		entityManager.remove(entityManager.merge(pessoa));
 	}
 
-	public void removerPorId(Integer id) {
-		Pessoa entity = entityManager.find(Pessoa.class, id);
+	public void removerPorId(Integer idPessoa) {
+		Pessoa entity = entityManager.find(Pessoa.class, idPessoa);
 		entityManager.remove(entity);	
 	}
 
@@ -34,7 +34,7 @@ public class PessoaRepositorio {
 		entityManager.merge(pessoa);	
 	}
 	
-	public Pessoa pesquisarPorID(Integer id) {
-		return entityManager.find(Pessoa.class, id);
+	public Pessoa pesquisarPorID(Integer idPessoa) {
+		return entityManager.find(Pessoa.class, idPessoa);
 	}
 }
