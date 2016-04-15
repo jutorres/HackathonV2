@@ -7,6 +7,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import com.stefanini.hackathon2.entidades.Emprestimos;
+import com.stefanini.hackathon2.entidades.Livro;
 import com.stefanini.hackathon2.repositorios.EmprestimosRepositorio;
 import com.stefanini.hackathon2.transacao.Transacional;
 
@@ -18,10 +19,20 @@ public class EmprestimosServico {
 	@Transacional
 	public void salvar(Emprestimos emprestimo) {
 		if (emprestimo.getIdEmprestimo() == null) {
-			repositorio.inserir(emprestimo);
-			
-		} else {
-			repositorio.atualizar(emprestimo);
+			if (emprestimo.getStatus() == null) {
+				for (Livro livroVerificaEstoque : emprestimo.getLivros()) {
+					if (livroVerificaEstoque.getEstoque() <= 1) {
+						System.out.println("não rolou");
+					} else {
+						for (Livro livroDiminuirEstoque : emprestimo.getLivros()) {
+							livroDiminuirEstoque.setEstoque(livroDiminuirEstoque.getEstoque() - 1);
+						}
+						emprestimo.setStatus("Alugado");
+						emprestimo.setDataRetirada(LocalDateTime.now());
+						repositorio.inserir(emprestimo);
+					}
+				}
+			}
 		}
 	}
 
@@ -31,8 +42,15 @@ public class EmprestimosServico {
 	}
 
 	@Transacional
-	public void deletar(Emprestimos emprestimo) {
-		repositorio.remover(emprestimo);
+	public void devolver(Emprestimos emprestimo) {
+		if (emprestimo.getStatus() != null) {
+			emprestimo.setStatus(null);
+			emprestimo.setDataDevolucao(LocalDateTime.now());
+			for (Livro livroAtribuirEstoque : emprestimo.getLivros()) {
+				livroAtribuirEstoque.setEstoque(livroAtribuirEstoque.getEstoque() + 1);
+			}
+			repositorio.devolver(emprestimo);
+		}
 	}
 	
 	@Transacional

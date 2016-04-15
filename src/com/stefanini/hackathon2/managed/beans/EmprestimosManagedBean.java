@@ -31,9 +31,9 @@ public class EmprestimosManagedBean {
 		limpar();
 	}
 	
-	public void deletar(Emprestimos emprestimo) {
-		servico.deletar(emprestimo);
-		Mensageiro.notificaInformacao("Parabéns!", "Empréstimo deletado com sucesso!");
+	public void devolver(Emprestimos emprestimo) {
+		servico.devolver(emprestimo);
+		Mensageiro.notificaInformacao("Parabéns!", "Livro devolvido com sucesso!");
 		carregaListaDeEmprestimos();
 		limpar();
 	}
@@ -66,11 +66,6 @@ public class EmprestimosManagedBean {
 	
 	public void setEmprestimo(Emprestimos emprestimo) {
 		this.emprestimo = emprestimo;
-	}
-	
-	public void finalizarEmprestimo(Emprestimos emprestimo) {
-		emprestimo.setDataDevolucao(LocalDateTime.now());
-		servico.salvar(emprestimo);
 	}
 	
 	public String getDiasEmAtraso(String dataRetiradaString, String dataEntregaString) {

@@ -1,6 +1,7 @@
 package com.stefanini.hackathon2.entidades;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -19,9 +21,9 @@ public class Emprestimos {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idEmprestimo;
 	
-	@ManyToOne(cascade = CascadeType.REFRESH)
+	@ManyToMany(cascade = CascadeType.REFRESH)
 	@JoinColumn(name = "idLivro")
-	private Livro livro;
+	private List<Livro> livros;
 	
 	@ManyToOne(cascade = CascadeType.REFRESH)
 	@JoinColumn(name = "idPessoa")
@@ -38,6 +40,9 @@ public class Emprestimos {
 	@Column
 	@Convert(converter = LocalDateTimeConverter.class)
 	private LocalDateTime dataDevolucao;
+	
+	@Column
+	private String status;
 
 	public Emprestimos() {
 		this.dataRetirada = LocalDateTime.now();
@@ -47,8 +52,8 @@ public class Emprestimos {
 		return idEmprestimo;
 	}
 
-	public Livro getLivro() {
-		return livro;
+	public List<Livro> getLivros() {
+		return livros;
 	}
 
 	public Pessoa getPessoa() {
@@ -71,8 +76,8 @@ public class Emprestimos {
 		this.idEmprestimo = idEmprestimo;
 	}
 
-	public void setLivro(Livro livro) {
-		this.livro = livro;
+	public void setLivros(List<Livro> livros) {
+		this.livros = livros;
 	}
 
 	public void setPessoa(Pessoa pessoa) {
@@ -90,16 +95,25 @@ public class Emprestimos {
 	public void setDataDevolucao(LocalDateTime dataDevolucao) {
 		this.dataDevolucao = dataDevolucao;
 	}
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 	@Override
 	public final int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((livro == null) ? 0 : livro.hashCode());
+		result = prime * result + ((livros == null) ? 0 : livros.hashCode());
 		result = prime * result + ((pessoa == null) ? 0 : pessoa.hashCode());
 		result = prime * result + ((funcionario == null) ? 0 : funcionario.hashCode());
 		result = prime * result + ((dataRetirada == null) ? 0 : dataRetirada.hashCode());
 		result = prime * result + ((dataDevolucao == null) ? 0 : dataDevolucao.hashCode());
+		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		return result;
 	}
 
@@ -127,10 +141,10 @@ public class Emprestimos {
 				return false;
 		} else if (!idEmprestimo.equals(other.idEmprestimo))
 			return false;
-		if (livro == null) {
-			if (other.livro != null)
+		if (livros == null) {
+			if (other.livros != null)
 				return false;
-		} else if (!livro.equals(other.livro))
+		} else if (!livros.equals(other.livros))
 			return false;
 		if (pessoa == null) {
 			if (other.pessoa != null)
@@ -141,6 +155,11 @@ public class Emprestimos {
 			if (other.funcionario != null)
 				return false;
 		} else if (!funcionario.equals(other.funcionario))
+			return false;
+		if (status == null) {
+			if (other.status != null)
+				return false;
+		} else if (!status.equals(other.status))
 			return false;
 		return true;
 	}

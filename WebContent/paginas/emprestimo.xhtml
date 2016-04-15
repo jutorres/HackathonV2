@@ -11,7 +11,7 @@
 		
 		<p:layout>
 				<p:layoutUnit position="north" style="text-align: center;">
-					<p:outputLabel style="font-size: 30px;" value="Central de Empréstimos"/>
+					<p:outputLabel style="font-size: 20px;" value="Central de Empréstimos"/>
 				</p:layoutUnit>
 
 				<p:layoutUnit position="center">
@@ -19,17 +19,14 @@
 					<h:form id="emprestimoForm">				
 						<p:growl id="growl" showDetail="true" sticky="false" life="4000" />
 
-					<p:panelGrid columns="2">
+					<p:panelGrid columns="8">
 
-						<p:outputLabel for="idLivro" value="Selecione o livro: " />
-						<p:selectOneMenu id="idLivro" converter="conversorCombobox" requiredMessage="Campo obrigatório" required="true"
-							value="#{emprestimosManagedBean.emprestimo.livro}" effect="fold">
-							<f:selectItem itemLabel="Selecione um livro" itemValue="" />
-							<f:selectItems itemLabel="#{livro.nome}" itemValue="#{livro}"
-								var="livro" value="#{livroManagedBean.listaDeLivrosCadastrados}" />
-						</p:selectOneMenu>
+						<p:outputLabel for="btnModalLivro" value="Selecione os livros:" />
+						<p:commandButton value="Buscar" id="btnModalLivro" 
+							oncomplete="PF('dialogLivro').show();" />
+						<ui:include src="popup/popup-selecionar-livro.xhtml" />
 						
-						<p:outputLabel for="idPessoa" value="Selecione o nome da pessoa: " />
+						<p:outputLabel for="idPessoa" value="Selecione a pessoa: " />
 						<p:selectOneMenu id="idPessoa" converter="conversorCombobox" requiredMessage="Campo obrigatório" required="true"
 								value="#{emprestimosManagedBean.emprestimo.pessoa}" effect="fold">
 							<f:selectItem itemLabel="Selecione um pessoa" itemValue="" />
@@ -37,7 +34,7 @@
 							itemLabel="#{pessoa.nome}" itemValue="#{pessoa}"/>
 						</p:selectOneMenu>
 						
-						<p:outputLabel for="idFuncionario" value="Selecione o nome do funcionario: " />
+						<p:outputLabel for="idFuncionario" value="Selecione o funcionario: " />
 						<p:selectOneMenu id="idFuncionario" converter="conversorCombobox" requiredMessage="Campo obrigatório" required="true"
 								value="#{emprestimosManagedBean.emprestimo.funcionario}" effect="fold">
 							<f:selectItem itemLabel="Selecione um funcionario" itemValue="" />
@@ -60,12 +57,16 @@
 				    	    <h:outputText value="#{emprestimos.idEmprestimo}" />
 					    </p:column>
 					    
+					    <p:column headerText="Status" style="text-align: center">
+				    	    <h:outputText value="#{emprestimos.status}" />
+					    </p:column>
+					    
 					    <p:column headerText="Nome" style="text-align: center">
 				    	    <h:outputText value="#{emprestimos.pessoa.nome}" />
 					    </p:column>
 					    
-					    <p:column headerText="Título do livro" style="text-align: center">
-				    	    <h:outputText value="#{emprestimos.livro.nome}" />
+					    <p:column headerText="Quantidade de livros" style="text-align: center">
+				    	    <h:outputText value="#{emprestimos.livros.size()}" />
 					    </p:column>
 					    
 					    <p:column headerText="Funcionario" style="text-align: center">
@@ -85,7 +86,10 @@
 						 </p:column>
 						 
 					    <p:column headerText="Ações" style="text-align: center">
-					    	<p:commandButton icon="fa fa-fw fa-book" title="Confirma devolução" update="tabelaDeEmprestimos emprestimoForm" action="#{emprestimosManagedBean.finalizarEmprestimo(emprestimos)}">
+					    	<p:commandButton icon="fa fa-fw fa-book" title="Confirma devolução" 
+					    		update="tabelaDeEmprestimos emprestimoForm" 
+					    		rendered="#{emprestimos.status eq 'Alugado'}"
+					    		action="#{emprestimosManagedBean.devolver(emprestimos)}">
 					    		<p:confirm header="Confirmação" message="Confirma a devolução do livro?" icon="ui-icon-alert" />
 					    	</p:commandButton>
 					    	

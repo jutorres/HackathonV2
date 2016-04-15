@@ -35,8 +35,14 @@
 							<p:inputMask maxlength="4" id="paginas" requiredMessage="Campo obrigatório" mask="9?999" required="true" 
 								value="#{livroManagedBean.livro.paginas}" />
 							<p:message for="paginas" />
-						
-						</p:panelGrid>
+
+							<p:outputLabel for="estoque" value="Estoque:" />
+							<p:inputMask maxlength="100" id="estoque"
+								requiredMessage="Campo obrigatório" required="true"
+								value="#{livroManagedBean.livro.estoque}" />
+							<p:message for="estoque" />
+
+					</p:panelGrid>
 					
 						<p:commandButton value="Salvar" process="@form" update="@form tabelaDeLivros" action="#{livroManagedBean.salvar()}" icon="fa fa-fw fa-save" />
 						<p:commandButton value="Limpar" process="@this" update="@form" action="#{livroManagedBean.limpar()}" icon="fa fa-fw fa-eraser" />
@@ -44,18 +50,27 @@
 					
 					<p:dataTable id="tabelaDeLivros" var="livro" value="#{livroManagedBean.listaDeLivrosCadastrados}"
 						emptyMessage="Não existem livros cadastrados" style="padding-top:20px;">
+						
 						<p:column headerText="Id">
 				    	    <h:outputText value="#{livro.idLivro}" />
 					    </p:column>
+					    
 					    <p:column headerText="Nome">
 				    	    <h:outputText value="#{livro.nome}" />
 					    </p:column>
+					    
 					    <p:column headerText="Autor">
 				    	    <h:outputText value="#{livro.autor}" />
 					    </p:column>
+					    
 					    <p:column headerText="Páginas">
 				    	    <h:outputText value="#{livro.paginas}" />
 					    </p:column>
+					    
+					    <p:column headerText="Estoque">
+				    	    <h:outputText value="#{livro.estoque}" />
+					    </p:column>
+					    
 					    <p:column headerText="Ações" style="text-align: center">
 					    	<p:commandButton icon="fa fa-fw fa-edit" title="Editar Livro" update="livroForm" action="#{livroManagedBean.setLivro(livro)}" />
 					    	<p:commandButton icon="fa fa-fw fa-trash" title="Deletar Livro" update="tabelaDeLivros livroForm" action="#{livroManagedBean.deletar(livro)}">

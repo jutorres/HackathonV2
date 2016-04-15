@@ -12,12 +12,18 @@ public class Livro {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer idLivro;
+	
 	@Column(nullable=false)
 	private String nome;
+	
 	@Column(nullable=false)
 	private String autor;
+	
 	@Column(nullable=false)
 	private Integer paginas;
+	
+	@Column(nullable = false)
+	private Integer estoque;
 	
 	public Livro() {
 	}
@@ -53,6 +59,14 @@ public class Livro {
 	public void setPaginas(Integer paginas) {
 		this.paginas = paginas;
 	}
+	
+	public Integer getEstoque() {
+		return estoque;
+	}
+
+	public void setEstoque(Integer estoque) {
+		this.estoque = estoque;
+	}
 
 	@Override
 	public final int hashCode() {
@@ -62,6 +76,7 @@ public class Livro {
 		result = prime * result + ((idLivro == null) ? 0 : idLivro.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((paginas == null) ? 0 : paginas.hashCode());
+		result = prime * result + ((estoque == null) ? 0 : estoque.hashCode());
 		return result;
 	}
 
@@ -93,6 +108,11 @@ public class Livro {
 			if (other.paginas != null)
 				return false;
 		} else if (!paginas.equals(other.paginas))
+			return false;
+		if (estoque == null) {
+			if (other.estoque != null)
+				return false;
+		} else if (!estoque.equals(other.estoque))
 			return false;
 		return true;
 	}

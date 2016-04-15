@@ -21,19 +21,14 @@ public class EmprestimosRepositorio {
 	public List<Emprestimos> todosEmprestimos() {
 		return entityManager.createQuery("select l from " + Emprestimos.class.getSimpleName() + " l").getResultList();
 	}
-	
-	public void remover(Emprestimos emprestimo) {
-		entityManager.remove(entityManager.merge(emprestimo));
-	}
-
-	public void removerPorId(Integer id) {
-		Emprestimos entity = entityManager.find(Emprestimos.class, id);
-		entityManager.remove(entity);	
-	}
 
 	public void atualizar(Emprestimos emprestimo) {
 		entityManager.merge(emprestimo);	
 	}
+	
+	public void devolver(Emprestimos emprestimo) {
+		  entityManager.merge(emprestimo);
+		 }
 	
 	public Emprestimos pesquisarPorID(Integer id) {
 		return entityManager.find(Emprestimos.class, id);
