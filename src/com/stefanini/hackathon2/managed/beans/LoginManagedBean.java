@@ -1,57 +1,70 @@
 package com.stefanini.hackathon2.managed.beans;
 
-import javax.faces.bean.*;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
-import com.stefanini.hackathon2.entidades.User;
-import com.stefanini.hackathon2.servicos.UserServico;
- 
- 
-@RequestScoped
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+import javax.inject.Inject;
+
+import com.stefanini.hackathon2.entidades.Login;
+import com.stefanini.hackathon2.servicos.LoginServico;
+import com.stefanini.hackathon2.util.Mensageiro;
+
 @ManagedBean
-public class LoginManagedBean extends AbstractManagedBean {
-    @ManagedProperty(value = UserManagedBean.INJECTION_NAME)
-    private UserManagedBean userManagedBean;
- 
-    private String email;
-    private String password;
- 
-    public String getEmail() {
-        return email;
-    }
- 
-    public void setEmail(String email) {
-        this.email = email;
-    }
- 
-    public String getPassword() {
-        return password;
-    }
- 
-    public void setPassword(String password) {
-        this.password = password;
-    }
- 
-    public String login() {
-        UserServico userServico = new UserServico();
- 
-        User user = userServico.isValidLogin(email, password);
- 
-        if(user != null){
-            userManagedBean.setUser(user);
-            FacesContext context = FacesContext.getCurrentInstance();
-            HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
-            request.getSession().setAttribute("user", user);
-            return "/pages/protected/index.xhtml";
-        }
- 
-        displayErrorMessageToUser("Check your email/password");
- 
-        return null;
-    }
- 
-    public void setUserManagedBean(UserManagedBean userManagedBean) {
-        this.userManagedBean = userManagedBean;
-    }   
+@ViewScoped
+public class LoginManagedBean {
+
+	private Login login;
+	private List<Login> listaDeLoginsCadastrados;
+	
+	@Inject
+	private LoginServico servico ;
+	
+	public LoginManagedBean() {
+	}
+	
+	public void salvar() {
+		servico.salvar(getLogin());
+		Mensageiro.notificaInformacao("Parabéns!", "Login cadastrado com sucesso!");
+		carregaListaDeLogins();
+		limpar();
+	}
+	
+	
+	public void deletar(Login login) {
+		servico.deletar(login);
+		Mensageiro.notificaInformacao("Parabéns!", "Login excluído com sucesso!");
+		carregaListaDeLogins();
+		limpar();
+	}
+	
+	public void limpar() {
+		setLogin(new Login());
+	}
+	
+	public void carregaListaDeLogins() {
+		setListaDeLoginsCadastrados(servico.carregaTodosLoginsDoBanco());
+	}
+	
+	public List<Login> getListaDeLoginsCadastrados() {
+		if (listaDeLoginsCadastrados == null) {
+			carregaListaDeLogins();
+		}
+		return listaDeLoginsCadastrados;
+	}
+	
+	public void setListaDeLoginsCadastrados(List<Login> listaDeLoginsCadastrados) {
+		this.listaDeLoginsCadastrados = listaDeLoginsCadastrados;
+	}
+	
+	public Login getLogin() {
+		if (login == null) {
+			limpar();
+		}
+		return login;
+	}
+	
+	public void setLogin(Login login) {
+		this.login = login;
+	}
 }
