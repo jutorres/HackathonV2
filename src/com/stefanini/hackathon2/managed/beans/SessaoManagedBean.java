@@ -2,8 +2,10 @@ package com.stefanini.hackathon2.managed.beans;
 
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import com.stefanini.hackathon2.entidades.Login;
@@ -34,14 +36,10 @@ public class SessaoManagedBean {
 			if (loginDoBanco.getUsuario().equals(usuario) && loginDoBanco.getSenha().equals(senha)) {
 				this.login = loginDoBanco;
 				login.setLogado(true);
-				Mensageiro.notificaInformacao("Olá!", "Seja bem-vindo!");
 				return "principal.xhtml?faces-redirect=true";
-			} else {
-				Mensageiro.notificaInformacao("Ops!", "Usuário não cadastrado!");
-				return "login.xhtml?faces-redirect=true";
 			}
 		}
-		return "principal.xhtml?faces-redirect=true";
+		return "error.xhtml?faces-redirect=true";
 
 	}
 
@@ -78,7 +76,8 @@ public class SessaoManagedBean {
 	}
 	
 	public String sair() {
-				login.setLogado(false);
+		FacesContext contexto = FacesContext.getCurrentInstance();
+		contexto.getExternalContext().invalidateSession();
 		return "principal.xhtml?faces-redirect=true";
 
 	}

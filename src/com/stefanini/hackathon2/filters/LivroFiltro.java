@@ -34,9 +34,11 @@ public class LivroFiltro implements Filter {
 
 		if (session == null) {
 			resp.sendRedirect(req.getServletContext().getContextPath() + "/paginas/principal.xhtml");
-		} else if (session.getLivro() == true && session.getEmprestimo() == false && session.getPessoa() == false
-				&& session.getAdmin() == false) {
-			chain.doFilter(request, response);
+		} else if (session.getLogado()) {
+			if (session.getEmprestimo() == false && session.getPessoa() == false && session.getLivro() == true
+					&& session.getAdmin() == false) {
+				chain.doFilter(request, response);
+			}
 		}
 	}
 
