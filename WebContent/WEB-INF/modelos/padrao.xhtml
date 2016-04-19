@@ -30,25 +30,31 @@
 
 						<p:menuitem value="Livros" icon="fa fa-fw fa-book"
 							url="/paginas/livro.xhtml"
-							rendered="#{sessaoManagedBean.login.admin || sessaoManagedBean.login.livro}" />
+							rendered="#{(sessaoManagedBean.login.admin || 
+										sessaoManagedBean.login.livro) 
+										and sessaoManagedBean.login.logado}" />
 
 						<p:separator />
 
 						<p:menuitem value="Pessoas" icon="fa fa-fw fa-users"
 							url="/paginas/pessoa.xhtml"
-							rendered="#{sessaoManagedBean.login.admin || sessaoManagedBean.login.pessoa}" />
+							rendered="#{(sessaoManagedBean.login.admin || 
+										sessaoManagedBean.login.pessoa) 
+										and sessaoManagedBean.login.logado}" />
 
 						<p:separator />
 
 						<p:menuitem value="Funcionarios" icon="fa fa-fw fa-users"
 							url="/paginas/funcionario.xhtml"
-							rendered="#{sessaoManagedBean.login.admin}" />
+							rendered="#{sessaoManagedBean.login.admin 
+										and sessaoManagedBean.login.logado}" />
 
 						<p:separator />
 
 						<p:menuitem value="Usuarios" icon="fa fa-fw fa-users"
 							url="/paginas/login.xhtml"
-							rendered="#{sessaoManagedBean.login.admin}" />
+							rendered="#{sessaoManagedBean.login.admin 
+										and sessaoManagedBean.login.logado}" />
 					</p:submenu>
 
 					<p:submenu label="Movimentos" icon="fa fa-fw fa-refresh"

@@ -36,7 +36,8 @@ public class AdminFiltro implements Filter {
 		if (session == null) {
 			resp.sendRedirect(req.getServletContext().getContextPath() + "/paginas/principal.xhtml");
 		} else if (session.getLogado()) {
-			if (session.getAdmin() == true) {
+			if (session.getEmprestimo() == true && session.getPessoa() == true && session.getLivro() == true
+					&& session.getAdmin() == true) {
 				chain.doFilter(request, response);
 			}
 		}
