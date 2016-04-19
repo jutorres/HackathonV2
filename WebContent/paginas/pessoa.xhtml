@@ -45,19 +45,19 @@
 					<p:dataTable id="tabelaDePessoas" var="pessoa" value="#{pessoaManagedBean.listaDePessoasCadastradas}"
 						emptyMessage="Não existem pessoas cadastradas" style="padding-top:20px;">
 						
-						<p:column headerText="Id">
+						<p:column headerText="Id" style="text-align: center">
 				    	    <h:outputText value="#{pessoa.idPessoa}" />
 					    </p:column>
 					    
-					    <p:column headerText="Nome">
+					    <p:column headerText="Nome" style="text-align: center">
 				    	    <h:outputText value="#{pessoa.nome}" />
 					    </p:column>
 					    
-					    <p:column headerText="CPF">
+					    <p:column headerText="CPF" style="text-align: center">
 				    	    <h:outputText value="#{pessoa.cpf}" />
 					    </p:column>
 					    
-					    <p:column headerText="E-mail">
+					    <p:column headerText="E-mail" style="text-align: center">
 				    	    <h:outputText value="#{pessoa.email}" />
 					    </p:column>
 					    

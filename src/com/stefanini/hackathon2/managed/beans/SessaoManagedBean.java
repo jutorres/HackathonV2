@@ -35,7 +35,7 @@ public class SessaoManagedBean {
 				this.login = loginDoBanco;
 				login.setLogado(true);
 				Mensageiro.notificaInformacao("Olá!", "Seja bem-vindo!");
-				return "emprestimo.xhtml?faces-redirect=true";
+				return "principal.xhtml?faces-redirect=true";
 			} else {
 				Mensageiro.notificaInformacao("Ops!", "Usuário não cadastrado!");
 				return "login.xhtml?faces-redirect=true";
@@ -77,7 +77,10 @@ public class SessaoManagedBean {
 		this.login = login;
 	}
 	
-	
+	public String sair() {
+				login.setLogado(false);
+		return "principal.xhtml?faces-redirect=true";
 
+	}
 
 }

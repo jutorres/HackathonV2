@@ -55,19 +55,19 @@
 					<p:dataTable id="tabelaDeFuncionarios" var="funcionario" value="#{funcionarioManagedBean.listaDeFuncionariosCadastrados}"
 						emptyMessage="Não existem funcionários cadastradas" style="padding-top:20px;">
 						
-						<p:column headerText="Id">
+						<p:column headerText="Id" style="text-align: center">
 				    	    <h:outputText value="#{funcionario.idFuncionario}" />
 					    </p:column>
 					    
-					    <p:column headerText="Nome">
+					    <p:column headerText="Nome" style="text-align: center">
 				    	    <h:outputText value="#{funcionario.nome}" />
 					    </p:column>
 					    
-					    <p:column headerText="Salario">
+					    <p:column headerText="Salario" style="text-align: center">
 				    	    <h:outputText value="#{funcionario.salario}" />
 					    </p:column>
 					    
-					    <p:column headerText="Email">
+					    <p:column headerText="Email" style="text-align: center">
 				    	    <h:outputText value="#{funcionario.email}" />
 					    </p:column>
 					    					    

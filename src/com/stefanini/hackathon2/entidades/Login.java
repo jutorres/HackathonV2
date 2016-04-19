@@ -22,6 +22,18 @@ public class Login {
 
 	@Column(nullable = false)
 	private String senha;
+	
+	@Column(nullable = false)
+	private Boolean admin;
+	
+	@Column(nullable = false)
+	private Boolean emprestimo;
+	
+	@Column(nullable = false)
+	private Boolean pessoa;
+	
+	@Column(nullable = false)
+	private Boolean livro;
 
 	@Column
 	@Temporal(TemporalType.DATE)
@@ -73,6 +85,40 @@ public class Login {
 	public void setLogado(Boolean logado) {
 		this.logado = logado;
 	}
+	
+	
+
+	public Boolean getAdmin() {
+		return admin;
+	}
+
+	public Boolean getEmprestimo() {
+		return emprestimo;
+	}
+
+	public Boolean getPessoa() {
+		return pessoa;
+	}
+
+	public Boolean getLivro() {
+		return livro;
+	}
+
+	public void setAdmin(Boolean admin) {
+		this.admin = admin;
+	}
+
+	public void setEmprestimo(Boolean emprestimo) {
+		this.emprestimo = emprestimo;
+	}
+
+	public void setPessoa(Boolean pessoa) {
+		this.pessoa = pessoa;
+	}
+
+	public void setLivro(Boolean livro) {
+		this.livro = livro;
+	}
 
 	@Override
 	public final int hashCode() {
@@ -83,6 +129,12 @@ public class Login {
 		result = prime * result + ((senha == null) ? 0 : senha.hashCode());
 		result = prime * result + ((ultimoAcesso == null) ? 0 : ultimoAcesso.hashCode());
 		result = prime * result + ((logado == null) ? 0 : logado.hashCode());
+		result = prime * result + ((admin == null) ? 0 : admin.hashCode());
+		result = prime * result + ((emprestimo == null) ? 0 : emprestimo.hashCode());
+		result = prime * result + ((pessoa == null) ? 0 : pessoa.hashCode());
+		result = prime * result + ((livro == null) ? 0 : livro.hashCode());
+
+
 		return result;
 	}
 
@@ -119,6 +171,26 @@ public class Login {
 			if (other.logado != null)
 				return false;
 		} else if (!logado.equals(other.logado))
+			return false;
+		if (admin == null) {
+			if (other.admin != null)
+				return false;
+		} else if (!admin.equals(other.admin))
+			return false;
+		if (pessoa == null) {
+			if (other.pessoa != null)
+				return false;
+		} else if (!pessoa.equals(other.pessoa))
+			return false;
+		if (livro == null) {
+			if (other.livro != null)
+				return false;
+		} else if (!livro.equals(other.livro))
+			return false;
+		if (emprestimo == null) {
+			if (other.emprestimo != null)
+				return false;
+		} else if (!emprestimo.equals(other.emprestimo))
 			return false;
 		return true;
 	}

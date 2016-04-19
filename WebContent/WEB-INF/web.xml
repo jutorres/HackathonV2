@@ -20,6 +20,46 @@
 		<url-pattern>*.xhtml</url-pattern>
 	</servlet-mapping>
 	
+	<filter>
+		<filter-name>AdminFiltro</filter-name>
+		<filter-class>com.stefanini.hackathon2.filters.AdminFiltro</filter-class>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>AdminFiltro</filter-name>
+		<url-pattern>/restricted/*</url-pattern>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>LivroFiltro</filter-name>
+		<filter-class>com.stefanini.hackathon2.filters.LivroFiltro</filter-class>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>LivroFiltro</filter-name>
+		<url-pattern>/restricted/*</url-pattern>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>FuncionarioFiltro</filter-name>
+		<filter-class>com.stefanini.hackathon2.filters.FuncionarioFiltro</filter-class>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>FuncionarioFiltro</filter-name>
+		<url-pattern>/restricted/*</url-pattern>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>PessoaFiltro</filter-name>
+		<filter-class>com.stefanini.hackathon2.filters.PessoaFiltro</filter-class>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>PessoaFiltro</filter-name>
+		<url-pattern>/restricted/*</url-pattern>
+	</filter-mapping>
+	
 	<context-param>
 	   <param-name>primefaces.FONT_AWESOME</param-name>
 	   <param-value>true</param-value>
