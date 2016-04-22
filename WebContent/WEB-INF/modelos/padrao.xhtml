@@ -45,14 +45,14 @@
 
 						<p:separator />
 
-						<p:menuitem value="Funcionarios" icon="fa fa-fw fa-users"
+						<p:menuitem value="Funcionarios" icon="fa fa-fw fa-briefcase"
 							url="/paginas/funcionario.xhtml"
 							rendered="#{sessaoManagedBean.login.admin 
 										and sessaoManagedBean.login.logado}" />
 
 						<p:separator />
 
-						<p:menuitem value="Usuarios" icon="fa fa-fw fa-users"
+						<p:menuitem value="Logins" icon="fa fa-fw fa-key"
 							url="/paginas/login.xhtml"
 							rendered="#{sessaoManagedBean.login.admin 
 										and sessaoManagedBean.login.logado}" />
@@ -62,7 +62,7 @@
 						rendered="#{(sessaoManagedBean.login.admin || 
 									sessaoManagedBean.login.emprestimo)
 									and sessaoManagedBean.login.logado}">
-						<p:menuitem value="Empréstimos" icon="fa fa-fw fa-exchange"
+						<p:menuitem value="Empréstimos" icon="fa fa-fw fa-tags"
 							url="/paginas/emprestimo.xhtml" />
 					</p:submenu>
 					
@@ -74,12 +74,10 @@
 					<p:button  style="color:red; margin-right:10px;" value="Seja bem-vindo, #{sessaoManagedBean.usuario}!" 
 						url="/paginas/principal.xhtml"
 						rendered="#{sessaoManagedBean.login.logado}" />
-					
-						<p:inputText style="margin-right:10px" placeholder="buscar" />
 
 						<p:commandButton value="Sair" rendered="#{sessaoManagedBean.login.logado}"
 							action="#{sessaoManagedBean.sair()}"
-							icon="fa fa-fw fa-power-off" />
+							icon="fa fa-fw fa-sign-out" />
 							
 					</f:facet>
 				</p:menubar>

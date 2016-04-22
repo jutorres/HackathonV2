@@ -2,7 +2,6 @@ package com.stefanini.hackathon2.managed.beans;
 
 import java.util.List;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -10,7 +9,6 @@ import javax.inject.Inject;
 
 import com.stefanini.hackathon2.entidades.Login;
 import com.stefanini.hackathon2.servicos.LoginServico;
-import com.stefanini.hackathon2.util.Mensageiro;
 
 @ManagedBean(eager = true)
 @SessionScoped
@@ -79,7 +77,6 @@ public class SessaoManagedBean {
 		FacesContext contexto = FacesContext.getCurrentInstance();
 		contexto.getExternalContext().invalidateSession();
 		return "principal.xhtml?faces-redirect=true";
-
 	}
 
 }

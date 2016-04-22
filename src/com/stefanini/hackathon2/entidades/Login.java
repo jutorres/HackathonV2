@@ -2,11 +2,14 @@ package com.stefanini.hackathon2.entidades;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
  
@@ -41,6 +44,10 @@ public class Login {
 
 	@Column(nullable = true)
 	private Boolean logado;
+	
+	@OneToOne(cascade = CascadeType.REFRESH)
+	@JoinColumn(name = "idFuncionario")
+	private Funcionario funcionario;
 
 	public Login() {
 
@@ -85,8 +92,6 @@ public class Login {
 	public void setLogado(Boolean logado) {
 		this.logado = logado;
 	}
-	
-	
 
 	public Boolean getAdmin() {
 		return admin;
@@ -120,6 +125,14 @@ public class Login {
 		this.livro = livro;
 	}
 
+	public Funcionario getFuncionario() {
+		return funcionario;
+	}
+
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
+	}
+
 	@Override
 	public final int hashCode() {
 		final int prime = 31;
@@ -133,6 +146,7 @@ public class Login {
 		result = prime * result + ((emprestimo == null) ? 0 : emprestimo.hashCode());
 		result = prime * result + ((pessoa == null) ? 0 : pessoa.hashCode());
 		result = prime * result + ((livro == null) ? 0 : livro.hashCode());
+		result = prime * result + ((funcionario == null) ? 0 : funcionario.hashCode());
 
 
 		return result;
@@ -191,6 +205,11 @@ public class Login {
 			if (other.emprestimo != null)
 				return false;
 		} else if (!emprestimo.equals(other.emprestimo))
+			return false;
+		if (funcionario == null) {
+			if (other.funcionario != null)
+				return false;
+		} else if (!funcionario.equals(other.funcionario))
 			return false;
 		return true;
 	}

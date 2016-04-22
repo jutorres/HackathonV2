@@ -41,6 +41,18 @@
 								requiredMessage="Campo obrigatório" required="true"
 								value="#{livroManagedBean.livro.estoque}" />
 							<p:message for="estoque" />
+							
+							</p:panelGrid>
+							
+							<p:panelGrid columns="3" style="margin-top: 20px">
+							<h:form >
+							<p:fileUpload
+								fileUploadListener="#{livroManagedBean.handleFileUpload}"
+								mode="advanced" dragDropSupport="true" update="messages"
+								fileLimit="1" sizeLimit="10000000"
+								allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+							<p:growl id="messages" showDetail="true" />
+						</h:form>
 
 					</p:panelGrid>
 					
@@ -48,7 +60,8 @@
 						<p:commandButton value="Limpar" process="@this" update="@form" action="#{livroManagedBean.limpar()}" icon="fa fa-fw fa-eraser" />
 					</h:form>
 					
-					<p:dataTable id="tabelaDeLivros" var="livro" value="#{livroManagedBean.listaDeLivrosCadastrados}"
+
+				<p:dataTable id="tabelaDeLivros" var="livro" value="#{livroManagedBean.listaDeLivrosCadastrados}"
 						emptyMessage="Não existem livros cadastrados" style="padding-top:20px;">
 						
 						<p:column headerText="Id" style="text-align: center">
@@ -62,6 +75,11 @@
 					    <p:column headerText="Autor" style="text-align: center">
 				    	    <h:outputText value="#{livro.autor}" />
 					    </p:column>
+					    
+					    <p:column headerText="Photo">
+						<p:graphicImage library="photosDoBanco" name="[B@10e1a6d.jpg"
+							style="padding-top: 15px !important" cache="false"/>
+						</p:column>
 					    
 					    <p:column headerText="Páginas" style="text-align: center">
 				    	    <h:outputText value="#{livro.paginas}" />

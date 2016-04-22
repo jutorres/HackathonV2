@@ -26,26 +26,34 @@
 							required="true" value="#{loginManagedBean.login.usuario}" />
 						<p:message for="usuario" />
 
-
 						<p:outputLabel for="senha" value="Senha:" />
 						<p:password id="senha" requiredMessage="Campo obrigatório"
 							required="true" value="#{loginManagedBean.login.senha}" />
 						<p:message for="senha" />
 						
+						<p:outputLabel for="idFuncionario" value="Funcionário: " />
+						<p:selectOneMenu id="idFuncionario" converter="conversorCombobox" requiredMessage=""
+								value="#{loginManagedBean.login.funcionario}" effect="fold">
+							<f:selectItem itemLabel="Selecione um funcionario" itemValue="" />
+							<f:selectItems value="#{funcionarioManagedBean.listaDeFuncionariosCadastrados}" var="funcionario"  
+							itemLabel="#{funcionario.nome}" itemValue="#{funcionario}"/>
+						</p:selectOneMenu>
+						<p:message for="idFuncionario" />
+						
 						</p:panelGrid>
 						
 						<p:panelGrid columns="2">
 
-						<p:outputLabel value="Permissões para cadastra pessoas:" />
+						<p:outputLabel value="Permissão para cadastrar pessoas:" />
 						<p:selectBooleanCheckbox value="#{loginManagedBean.login.pessoa}" />
 
-						<p:outputLabel value="Permissões para cadastrar livros:" />
+						<p:outputLabel value="Permissão para cadastrar livros:" />
 						<p:selectBooleanCheckbox value="#{loginManagedBean.login.livro}" />
 
-						<p:outputLabel value="Permissões para efetuar emprestimos:" />
+						<p:outputLabel value="Permissão para efetuar emprestimos:" />
 						<p:selectBooleanCheckbox value="#{loginManagedBean.login.emprestimo}" />
 
-						<p:outputLabel value="Permissões de administrador:" />
+						<p:outputLabel value="Permissão de administrador:" />
 						<p:selectBooleanCheckbox value="#{loginManagedBean.login.admin}" />
 
 					</p:panelGrid>
@@ -69,6 +77,10 @@
 					<p:column headerText="Usuário" style="text-align: center">
 						<h:outputText value="#{login.usuario}" />
 					</p:column>
+					
+					<p:column headerText="Funcionario" style="text-align: center">
+				    	    <h:outputText value="#{login.funcionario.nome}" />
+					    </p:column>
 					
 					<p:column headerText="Permissões para cadastrar pessoas" style="text-align: center">
 						<p:selectBooleanCheckbox value="#{login.pessoa}" />

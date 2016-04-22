@@ -21,12 +21,6 @@ public class Funcionario {
 	@Column(nullable=false)
 	private String email;
 	
-	@Column(nullable=false)
-	private String login;
-	
-	@Column(nullable=false)
-	private String senha;
-	
 	public Funcionario() {
 	}
 
@@ -44,22 +38,6 @@ public class Funcionario {
 
 	public String getEmail() {
 		return email;
-	}
-
-	public String getLogin() {
-		return login;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
 	}
 
 	public void setIdFuncionario(Integer idFuncionario) {
@@ -86,8 +64,6 @@ public class Funcionario {
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((salario == null) ? 0 : salario.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((login == null) ? 0 : login.hashCode());
-		result = prime * result + ((senha == null) ? 0 : senha.hashCode());
 		return result;
 	}
 
@@ -119,16 +95,6 @@ public class Funcionario {
 			if (other.email != null)
 				return false;
 		} else if (!email.equals(other.email))
-			return false;
-		if (login == null) {
-			if (other.login != null)
-				return false;
-		} else if (!login.equals(other.login))
-			return false;
-		if (senha == null) {
-			if (other.senha != null)
-				return false;
-		} else if (!senha.equals(other.senha))
 			return false;
 		return true;
 	}

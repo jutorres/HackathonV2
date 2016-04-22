@@ -31,22 +31,22 @@
 								value="#{funcionarioManagedBean.funcionario.salario}" />
 							<p:message for="salario" />
 							
+							</p:panelGrid>
+							
+							<p:panelGrid columns="4">
+
 							<p:outputLabel for="email" value="E-mail:"/>
-							<p:inputText id="email" requiredMessage="Campo obrigatório" required="true" 
-								value="#{funcionarioManagedBean.funcionario.email}" />
+							<p:inputText id="email" required="true" label="E-mail" size="30"
+								requiredMessage="Campo obrigatório"
+								validatorMessage="Invalid email format" value="#{funcionarioManagedBean.funcionario.email}">
+								<f:validateRegex
+									pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+	
+							</p:inputText>
+							<p:watermark for="email" value="Email Address *" />
 							<p:message for="email" />
-							
-							<p:outputLabel for="login" value="Nome de usuário:"/>
-							<p:inputText id="login" requiredMessage="Campo obrigatório" required="true" 
-								value="#{funcionarioManagedBean.funcionario.login}" />
-							<p:message for="login" />
-							
-							<p:outputLabel for="senha" value="Senha:"/>
-							<p:inputText id="senha" requiredMessage="Campo obrigatório" required="true" 
-								value="#{funcionarioManagedBean.funcionario.senha}" />
-							<p:message for="senha" />
-						
-						</p:panelGrid>
+
+					</p:panelGrid>
 					
 						<p:commandButton value="Salvar" process="@form" update="@form tabelaDeFuncionarios" action="#{funcionarioManagedBean.salvar()}" icon="fa fa-fw fa-save" />
 						<p:commandButton value="Limpar" process="@this" update="@form" action="#{funcionarioManagedBean.limpar()}" icon="fa fa-fw fa-eraser" />

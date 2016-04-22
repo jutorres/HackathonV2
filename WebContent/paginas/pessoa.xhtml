@@ -19,21 +19,39 @@
 					<h:form id="pessoaForm">				
 						<p:growl id="growl" showDetail="true" sticky="false" life="4000" />  
 						
-						<p:panelGrid columns="3">
+						<p:panelGrid columns="4">
 						
-							<p:outputLabel for="nome" value="Nome:"/>
-							<p:inputText id="nome" requiredMessage="Campo obrigatório" required="true" 
-								value="#{pessoaManagedBean.pessoa.nome}" />
+						<p:outputLabel for="nome" value="Nome:"/>
+							<p:inputText id="nome" required="true" label="Nome" size="20" style="margin-left:3px;"
+								requiredMessage="Campo obrigatório"
+								validatorMessage="Invalid name format" value="#{pessoaManagedBean.pessoa.nome}">
+								<f:validateRegex pattern="[a-zA-Z]+" />
+							</p:inputText>
+							<p:watermark for="nome" value="Name *" />
 							<p:message for="nome" />
-		
-							<p:outputLabel for="cpf" value="CPF:"/>
+							
+							</p:panelGrid>
+							
+							<p:panelGrid columns="3">
+						
+							<p:outputLabel for="cpf" value="CPF:" />
 							<p:inputMask maxlength="11" id="cpf" requiredMessage="Campo obrigatório" mask="999.999.999.99" required="true" 
-								value="#{pessoaManagedBean.pessoa.cpf}" />
+								value="#{pessoaManagedBean.pessoa.cpf}" style="margin-left:14px;"/>
 							<p:message for="cpf" />
 							
+							</p:panelGrid>
+							
+							<p:panelGrid columns="4">
+
 							<p:outputLabel for="email" value="E-mail:"/>
-							<p:inputText id="email" requiredMessage="Campo obrigatório" required="true" 
-								value="#{pessoaManagedBean.pessoa.email}" />
+							<p:inputText id="email" required="true" label="E-mail" size="30"
+								requiredMessage="Campo obrigatório"
+								validatorMessage="Invalid email format" value="#{pessoaManagedBean.pessoa.email}">
+								<f:validateRegex
+									pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+	
+							</p:inputText>
+							<p:watermark for="email" value="Email Address *" />
 							<p:message for="email" />
 		
 						</p:panelGrid>
