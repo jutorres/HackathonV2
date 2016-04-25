@@ -10,6 +10,7 @@
 		<ui:define name="conteudo">
 		
 		<p:layout>
+		
 				<p:layoutUnit position="north" style="text-align: center;">
 					<p:outputLabel style="font-size: 30px;" value="Cadastro de Pessoas"/>
 				</p:layoutUnit>
@@ -33,13 +34,17 @@
 							</p:panelGrid>
 							
 							<p:panelGrid columns="3">
-						
-							<p:outputLabel for="cpf" value="CPF:" />
-							<p:inputMask maxlength="11" id="cpf" requiredMessage="Campo obrigatório" mask="999.999.999.99" required="true" 
-								value="#{pessoaManagedBean.pessoa.cpf}" style="margin-left:14px;"/>
-							<p:message for="cpf" />
-							
-							</p:panelGrid>
+
+						<p:outputLabel for="cpf" value="CPF:" />
+						<p:inputMask maxlength="11" id="cpf"
+							requiredMessage="Campo obrigatório" mask="99999999999"
+							required="true" value="#{pessoaManagedBean.pessoa.cpf}"
+							style="margin-left:14px;">
+						<f:validator validatorId="cpfValidator" />
+						</p:inputMask>
+						<p:message for="cpf" />
+
+					</p:panelGrid>
 							
 							<p:panelGrid columns="4">
 
@@ -91,8 +96,8 @@
 						    </p:confirmDialog>
 					    </p:column>
 					</p:dataTable>
-				
-				</p:layoutUnit>
+
+			</p:layoutUnit>
 			
 			</p:layout>
 		
